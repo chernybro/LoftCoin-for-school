@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.widget.activity.converter;
+package com.chernybro.loftcoin.ui.activity.converter;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.widget.activity.main;
+package com.chernybro.loftcoin.ui.activity.main;
 
 import android.os.Bundle;
 

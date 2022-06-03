@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.widget.activity.splash;
+package com.chernybro.loftcoin.ui.activity.splash;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chernybro.loftcoin.R;
-import com.chernybro.loftcoin.ui.widget.activity.main.MainActivity;
-import com.chernybro.loftcoin.ui.widget.activity.welcome.WelcomeActivity;
+import com.chernybro.loftcoin.ui.activity.main.MainActivity;
+import com.chernybro.loftcoin.ui.activity.welcome.WelcomeActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

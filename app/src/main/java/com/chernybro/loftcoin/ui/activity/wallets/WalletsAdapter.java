@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.widget.activity.wallets;
+package com.chernybro.loftcoin.ui.activity.wallets;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

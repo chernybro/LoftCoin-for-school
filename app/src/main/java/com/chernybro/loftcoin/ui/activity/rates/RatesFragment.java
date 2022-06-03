@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.widget.activity.rates;
+package com.chernybro.loftcoin.ui.activity.rates;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

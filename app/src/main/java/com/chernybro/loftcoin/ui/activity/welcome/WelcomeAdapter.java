@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.widget.activity.welcome;
+package com.chernybro.loftcoin.ui.activity.welcome;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

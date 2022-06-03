@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.widget.activity.wallets;
+package com.chernybro.loftcoin.ui.activity.wallets;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;

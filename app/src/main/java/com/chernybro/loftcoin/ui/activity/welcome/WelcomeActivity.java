@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.widget.activity.welcome;
+package com.chernybro.loftcoin.ui.activity.welcome;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import com.chernybro.loftcoin.ui.widget.activity.main.MainActivity;
 import com.chernybro.loftcoin.databinding.ActivityWelcomeBinding;
+import com.chernybro.loftcoin.ui.activity.main.MainActivity;
 import com.chernybro.loftcoin.ui.widget.CircleIndicator;
 
 public class WelcomeActivity extends AppCompatActivity {
