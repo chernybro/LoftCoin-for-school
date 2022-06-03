@@ -17,11 +17,12 @@
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/drawable/ic_wallet.xml" value="0.123" />
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/activity_splash.xml" value="0.20599409033347404" />
-        <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/activity_welcome.xml" value="0.11197916666666667" />
+        <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/activity_welcome.xml" value="0.6" />
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/content_main.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/fragment_converter.xml" value="0.20863616930312098" />
-        <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/fragment_rates.xml" value="0.1" />
+        <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/fragment_rates.xml" value="0.264" />
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/fragment_wallets.xml" value="0.1" />
+        <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/i_rate.xml" value="0.10688328345446772" />
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/i_transaction.xml" value="0.1" />
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/i_wallet.xml" value="0.1" />
         <entry key="..\:/Users/Cherny/AndroidStudioProjects/LoftCoinbychernybro/app/src/main/res/layout/li_rate.xml" value="0.20863616930312098" />
