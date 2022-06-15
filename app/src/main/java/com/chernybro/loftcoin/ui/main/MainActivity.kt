@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.ui.activity.main
+package com.chernybro.loftcoin.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
