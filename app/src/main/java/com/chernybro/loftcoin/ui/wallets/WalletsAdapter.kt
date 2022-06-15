@@ -1,8 +1,8 @@
 package com.chernybro.loftcoin.ui.activity.wallets
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.chernybro.loftcoin.databinding.IWalletBinding
 
 internal class WalletsAdapter : RecyclerView.Adapter<WalletsAdapter.ViewHolder>() {

@@ -29,4 +29,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+
+    <style name="AppTheme.AlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">@color/dark_four</item>
+    </style>
+
 </resources>

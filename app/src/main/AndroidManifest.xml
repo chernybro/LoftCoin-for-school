@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.chernybro.loftcoin">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".LoftApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,7 +17,7 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.welcome.WelcomeActivity" />
-        <activity android:name=".ui.activity.main.MainActivity" />
+        <activity android:name=".ui.welcome.WelcomeActivity" />
+        <activity android:name=".ui.main.MainActivity" />
     </application>
 
 </manifest>

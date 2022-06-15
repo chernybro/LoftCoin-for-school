@@ -1,18 +1,16 @@
-package com.chernybro.loftcoin.ui.activity.wallets
+package com.chernybro.loftcoin.ui.wallets
 
-import androidx.recyclerview.widget.SnapHelper
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.os.Bundle
-import com.chernybro.loftcoin.R
-import androidx.recyclerview.widget.PagerSnapHelper
 import android.util.TypedValue
-import android.util.DisplayMetrics
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.chernybro.loftcoin.ui.activity.wallets.WalletsFragment.CarouselScroller
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import com.chernybro.loftcoin.R
 import com.chernybro.loftcoin.databinding.FragmentWalletsBinding
 import com.chernybro.loftcoin.ui.activity.wallets.WalletsAdapter
 import kotlin.math.abs

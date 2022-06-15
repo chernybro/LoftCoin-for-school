@@ -6,5 +6,7 @@
     <attr name="walletCardWidth" format="dimension|reference" />
     <attr name="walletCardHeight" format="dimension|reference" />
 
+    <attr name="textNegative" format="color|reference" />
+    <attr name="textPositive" format="color|reference" />
 
 </resources>
