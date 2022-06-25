@@ -4,26 +4,39 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatDialogFragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chernybro.loftcoin.BaseComponent
+import com.chernybro.loftcoin.LoftApp
 import com.chernybro.loftcoin.R
-import com.chernybro.loftcoin.data.models.Currency
-import com.chernybro.loftcoin.data.service.currency.CurrencyRepo
-import com.chernybro.loftcoin.data.service.currency.CurrencyRepoImpl
 import com.chernybro.loftcoin.databinding.DialogCurrencyBinding
-import com.chernybro.loftcoin.utils.OnItemClick
+import com.chernybro.loftcoin.utils.handlers.OnItemClick
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import javax.inject.Inject
 
-class CurrencyDialog : AppCompatDialogFragment() {
+class CurrencyDialog @Inject constructor(
+) : AppCompatDialogFragment() {
     private var _binding: DialogCurrencyBinding? = null
     private val binding get() = _binding!!
 
-    private var currencyRepo: CurrencyRepo? = null
     private lateinit var adapter: CurrencyAdapter
     private lateinit var onItemClick: OnItemClick
 
+    @JvmField
+    @Inject
+    var baseComponent: BaseComponent? = null
+
+    private lateinit var component: CurrencyComponent
+
+    private lateinit var viewModel: CurrencyViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        currencyRepo = CurrencyRepoImpl(requireContext())
+        component = DaggerCurrencyComponent.builder()
+            .baseComponent(baseComponent)
+            .build()
+        viewModel =
+            ViewModelProvider(this, component.viewModelFactory())[CurrencyViewModel::class.java]
         adapter = CurrencyAdapter()
     }
 
@@ -39,15 +52,13 @@ class CurrencyDialog : AppCompatDialogFragment() {
         super.onActivityCreated(savedInstanceState)
         binding.recycler.layoutManager = LinearLayoutManager(requireActivity())
         binding.recycler.adapter = adapter
-        currencyRepo!!.availableCurrencies().observe(this
-        ) { list: List<Currency> ->
-            adapter.submitList(list)
+        viewModel.allCurrencies().observe(this) { currencies ->
+            adapter.submitList(currencies)
         }
         onItemClick = OnItemClick(binding.recycler.context) { v: View ->
             val viewHolder = binding.recycler.findContainingViewHolder(v)
             if (viewHolder != null) {
-                val item = adapter.getItem(viewHolder.adapterPosition)
-                currencyRepo!!.updateCurrency(item)
+                viewModel.updateCurrency(adapter.getItem(viewHolder.adapterPosition))
             }
             dismissAllowingStateLoss()
         }

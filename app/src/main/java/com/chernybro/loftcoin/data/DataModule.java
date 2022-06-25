@@ -12,6 +12,7 @@ import com.chernybro.loftcoin.data.remote.service.coins.ListingsApi;
 import com.chernybro.loftcoin.data.remote.service.currency.CurrencyRepo;
 import com.chernybro.loftcoin.data.remote.service.currency.CurrencyRepoImpl;
 import com.squareup.moshi.Moshi;
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory;
 
 import javax.inject.Singleton;
 
@@ -45,7 +46,11 @@ public abstract class DataModule {
             })
             .build());
         builder.baseUrl(BuildConfig.API_ENDPOINT);
-        builder.addConverterFactory(MoshiConverterFactory.create(moshi));
+        builder.addConverterFactory( MoshiConverterFactory.create(
+                new Moshi.Builder()
+                        .add(new KotlinJsonAdapterFactory())
+                        .build()
+        ));
         return builder.build();
     }
 

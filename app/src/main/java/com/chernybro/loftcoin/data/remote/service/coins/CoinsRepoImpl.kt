@@ -1,10 +1,10 @@
 package com.chernybro.loftcoin.data.remote.service.coins
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.chernybro.loftcoin.data.local.database.LoftDatabase
 import com.chernybro.loftcoin.data.local.entities.RoomCoin
+import com.chernybro.loftcoin.data.remote.models.CmcCoin
 import com.chernybro.loftcoin.data.remote.models.Coin
 import com.chernybro.loftcoin.data.remote.models.Listings
 import com.chernybro.loftcoin.data.remote.models.SortBy
@@ -25,7 +25,11 @@ class CoinsRepoImpl @Inject constructor(
 
     override fun listings(query: CoinsRepo.Query): LiveData<List<Coin>> {
         fetchFromNetworkIfNecessary(query)
-        return fetchFromDb(query)
+        try {
+            return fetchFromDb(query)
+        } catch (e: Exception) {
+            return fetchFromDb(query)
+        }
     }
 
     private fun fetchFromDb(query: CoinsRepo.Query): LiveData<List<Coin>> {
@@ -35,9 +39,19 @@ class CoinsRepoImpl @Inject constructor(
         } else {
             db.coins().fetchAllSortByRank()
         }
-        return Transformations.map<List<RoomCoin>, List<Coin>>(
-            coins
-        ) { ArrayList() }
+        return Transformations.map<List<RoomCoin>, List<Coin>>(coins) { roomCoins ->
+            roomCoins.map {
+                Coin(
+                    id = it.id,
+                    name = it.name,
+                    symbol = it.symbol,
+                    rank = it.rank,
+                    price = it.price,
+                    change24h = it.change24h,
+                    currencyCode = it.currencyCode
+                )
+            }
+        }
     }
 
     private fun fetchFromNetworkIfNecessary(query: CoinsRepo.Query) {
@@ -46,7 +60,6 @@ class CoinsRepoImpl @Inject constructor(
                 try {
                     val response: Response<Listings> =
                         api.getListings(query.currency).execute()
-                    Log.d("TAG", "fetchFromNetworkIfNecessary: response ${response.code()} ")
                     if (response.isSuccessful) {
                         val listings = response.body()
                         if (listings != null) {
@@ -60,14 +73,12 @@ class CoinsRepoImpl @Inject constructor(
                     }
                 } catch (e: IOException) {
                     Timber.e(e)
-                    Log.d("TAG", "fetchFromNetworkIfNecessary: $e")
-
                 }
             }
         }
     }
 
-    private fun saveCoinsIntoDb(query: CoinsRepo.Query, coins: List<Coin>) {
+    private fun saveCoinsIntoDb(query: CoinsRepo.Query, coins: List<CmcCoin>) {
         val roomCoins: MutableList<RoomCoin> = java.util.ArrayList<RoomCoin>(coins.size)
         for (coin in coins) {
             roomCoins.add(

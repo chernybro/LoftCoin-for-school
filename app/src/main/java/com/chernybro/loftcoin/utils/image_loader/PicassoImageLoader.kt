@@ -13,7 +13,7 @@ class PicassoImageLoader @Inject constructor(private val picasso: Picasso) : Ima
         return PicassoImageRequest(picasso.load(url))
     }
 
-    private class PicassoImageRequest internal constructor(private val request: RequestCreator) :
+    private class PicassoImageRequest constructor(private val request: RequestCreator) :
         ImageRequest {
         override fun into(view: ImageView) {
             request.into(view)
