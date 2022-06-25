@@ -1,14 +1,38 @@
 package com.chernybro.loftcoin.utils.formatters
 
-import android.icu.text.NumberFormat
-import android.os.Build
+import android.content.Context
+import javax.inject.Singleton
+import javax.inject.Inject
+import com.chernybro.loftcoin.utils.formatters.PriceFormatter
+import androidx.core.os.LocaleListCompat
+import androidx.core.os.ConfigurationCompat
+import java.text.NumberFormat
+import java.util.*
 
-class PriceFormatter : Formatter<Double> {
-    override fun format(value: Double): String {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            NumberFormat.getCurrencyInstance().format(value)
-        } else {
-            java.text.NumberFormat.getCurrencyInstance().format(value)
+@Singleton
+class PriceFormatter @Inject constructor(private val context: Context) : Formatter<Double> {
+
+    companion object {
+        private val LOCALES: MutableMap<String, Locale> = HashMap()
+
+        init {
+            LOCALES["RUB"] = Locale("ru", "RU")
+            LOCALES["EUR"] = Locale.GERMANY
         }
+    }
+
+    fun format(currency: String, value: Double): String {
+        var locale = LOCALES[currency]
+        if (locale == null) {
+            val locales = ConfigurationCompat.getLocales(
+                context.resources.configuration
+            )
+            locale = locales[0]
+        }
+        return NumberFormat.getCurrencyInstance(locale).format(value)
+    }
+
+    override fun format(value: Double): String {
+        return NumberFormat.getCurrencyInstance().format(value)
     }
 }

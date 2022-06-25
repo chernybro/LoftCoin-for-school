@@ -6,29 +6,31 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chernybro.loftcoin.BaseComponent
+import com.chernybro.loftcoin.LoftApp
 import com.chernybro.loftcoin.R
-import com.chernybro.loftcoin.data.models.Coin
-import com.chernybro.loftcoin.data.models.Currency
-import com.chernybro.loftcoin.data.service.currency.CurrencyRepo
-import com.chernybro.loftcoin.data.service.currency.CurrencyRepoImpl
+import com.chernybro.loftcoin.data.remote.models.Coin
 import com.chernybro.loftcoin.databinding.FragmentRatesBinding
-import com.chernybro.loftcoin.utils.formatters.PriceFormatter
-import timber.log.Timber
+import javax.inject.Inject
 
-class RatesFragment : Fragment() {
+class RatesFragment @Inject constructor(
+
+): Fragment() {
     private var _binding: FragmentRatesBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var adapter: RatesAdapter
     private lateinit var viewModel: RatesViewModel
-    private var currencyRepo: CurrencyRepo? = null
 
+    private lateinit var component: RatesComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RatesViewModel::class.java)
-        adapter = RatesAdapter(PriceFormatter())
-        currencyRepo = CurrencyRepoImpl(requireContext())
+        component = DaggerRatesComponent.builder()
+            .baseComponent((activity?.application as LoftApp).getComponent())
+            .build()
+        viewModel = ViewModelProvider(this, component.viewModelFactory())[RatesViewModel::class.java]
+        adapter = component.ratesAdapter()
     }
 
 
@@ -53,14 +55,8 @@ class RatesFragment : Fragment() {
         viewModel.isRefreshing().observe(viewLifecycleOwner) { isRefreshing ->
             binding.refresher.isRefreshing = isRefreshing!!
         }
-        currencyRepo!!.currency()
-            .observe(viewLifecycleOwner) { currency: Currency? -> Timber.d("%s", currency) }
-    }
 
-    override fun onStart() {
-        super.onStart()
     }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.rates, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -70,6 +66,9 @@ class RatesFragment : Fragment() {
         if (R.id.currency_dialog == item.itemId) {
             NavHostFragment.findNavController(this)
                 .navigate(R.id.currency_dialog)
+            return true
+        } else if (R.id.sort_dialog == item.itemId) {
+            viewModel.switchSortingOrder()
             return true
         }
         return super.onOptionsItemSelected(item)

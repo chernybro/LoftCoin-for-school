@@ -1,9 +1,9 @@
-package com.chernybro.loftcoin.utils
+package com.chernybro.loftcoin.utils.logging
 
 import timber.log.Timber
 import java.util.*
 
-open class DebugTree : Timber.DebugTree() {
+class DebugTree : Timber.DebugTree() {
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
         val stackTrace = Throwable().fillInStackTrace().stackTrace
         val ste = stackTrace[5]

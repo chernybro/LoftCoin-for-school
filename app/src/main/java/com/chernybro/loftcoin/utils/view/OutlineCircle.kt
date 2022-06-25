@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.utils
+package com.chernybro.loftcoin.utils.view
 
 import android.graphics.Outline
 import android.view.View

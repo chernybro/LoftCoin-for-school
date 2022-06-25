@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.data.models
+package com.chernybro.loftcoin.data.remote.models
 
 import com.squareup.moshi.JsonClass
 

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.chernybro.loftcoin.data.models.Currency
+import com.chernybro.loftcoin.data.remote.models.Currency
 import com.chernybro.loftcoin.databinding.ICurrencyBinding
 
 class CurrencyAdapter : ListAdapter<Currency, CurrencyAdapter.ViewHolder>(DIFF_UTIL) {

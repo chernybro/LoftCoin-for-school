@@ -1,7 +1,7 @@
-package com.chernybro.loftcoin.data.service.currency
+package com.chernybro.loftcoin.data.remote.service.currency
 
 import androidx.lifecycle.LiveData
-import com.chernybro.loftcoin.data.models.Currency
+import com.chernybro.loftcoin.data.remote.models.Currency
 
 interface CurrencyRepo {
     fun availableCurrencies(): LiveData<List<Currency>>

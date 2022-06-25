@@ -1,4 +1,4 @@
-package com.chernybro.loftcoin.utils
+package com.chernybro.loftcoin.utils.handlers
 
 import android.content.Context
 import android.view.GestureDetector.SimpleOnGestureListener
